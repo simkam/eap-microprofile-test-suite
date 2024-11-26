@@ -81,7 +81,9 @@
         <testsuite.galleon.pack.artifactId>wildfly-galleon-pack</testsuite.galleon.pack.artifactId>
         <testsuite.galleon.pack.version>${version.org.jboss.wildfly.dist}</testsuite.galleon.pack.version>
         <!-- Bootable JAR -->
-        <version.org.wildfly.jar.plugin>11.0.2.Final</version.org.wildfly.jar.plugin>
+        <testsuite.wildfly-maven-plugin.groupId>org.jboss.eap.plugins</testsuite.wildfly-maven-plugin.groupId>
+        <testsuite.wildfly-maven-plugin.artifactId>eap-maven-plugin</testsuite.wildfly-maven-plugin.artifactId>
+        <testsuite.wildfly-maven-plugin.version>EMPTY</testsuite.wildfly-maven-plugin.version>
         <version.org.bitbucket.b_c.jose4j>0.7.4</version.org.bitbucket.b_c.jose4j>
         <version.org.eclipse.parsson>1.1.5</version.org.eclipse.parsson>
         <version.org.jboss.logging.jboss-logging>3.6.1.Final</version.org.jboss.logging.jboss-logging>
@@ -385,9 +387,9 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.wildfly.plugins</groupId>
-                    <artifactId>wildfly-jar-maven-plugin</artifactId>
-                    <version>${version.org.wildfly.jar.plugin}</version>
+                    <groupId>${testsuite.wildfly-maven-plugin.groupId}</groupId>
+                    <artifactId>${testsuite.wildfly-maven-plugin.artifactId}</artifactId>
+                    <version>${testsuite.wildfly-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -465,7 +467,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-resources-plugin</artifactId>
-                        <executions combine.children="append">
+                        <executions>
                             <!-- Copy the AS into current_submodule/target/jboss-as . This is executed recursively in submodules. -->
                             <execution>
                                 <id>ts.copy-wildfly</id>
@@ -676,8 +678,8 @@
                     <plugins>
                         <!-- Bootable JAR Maven plugin -->
                         <plugin>
-                            <groupId>org.wildfly.plugins</groupId>
-                            <artifactId>wildfly-jar-maven-plugin</artifactId>
+                            <groupId>${testsuite.wildfly-maven-plugin.groupId}</groupId>
+                            <artifactId>${testsuite.wildfly-maven-plugin.artifactId}</artifactId>
                             <configuration>
                                 <channels>
                                     <channel>
